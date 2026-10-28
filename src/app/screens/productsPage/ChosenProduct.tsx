@@ -11,7 +11,7 @@ import "swiper/css"; // @ts-ignore
 import "swiper/css/free-mode"; // @ts-ignore
 import "swiper/css/navigation"; // @ts-ignore
 import "swiper/css/thumbs";
-
+//
 export default function ChosenProduct() {
   return (
     <div className={"chosen-product"}>
