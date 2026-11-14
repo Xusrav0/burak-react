@@ -5,6 +5,8 @@ import React, { useEffect, useState } from "react";
 
 export default function HomeNavbar() {
   const authMember = null;
+
+  // HOOK - malum bir mantiqni bajaruvchi signal
   const [count, setCount] = useState<number>(0);
   const [value, setValue] = useState<boolean>(true);
 
@@ -22,6 +24,11 @@ export default function HomeNavbar() {
   const buttonHandler = () => {
     setValue(!value);
   };
+
+  // const buttonHandler = () => {
+  //   setCount(count+1);
+  // };
+
   return (
     <div className="home-navbar">
       <Container className="navbar-container">

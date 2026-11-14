@@ -29,7 +29,7 @@ class Test extends Component {
   }
 
   componentDidUpdate() {
-    console.log("componentDidUpdate"); //
+    console.log("componentDidUpdate"); // component qayta render bo'lib, yangilanish tugagandan keyin ishga tushadi.
   }
 
   render() {
