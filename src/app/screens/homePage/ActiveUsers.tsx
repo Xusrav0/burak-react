@@ -4,14 +4,18 @@ import Card from "@mui/joy/Card";
 import { CssVarsProvider, Typography } from "@mui/joy";
 import CardOverflow from "@mui/joy/CardOverflow";
 
-const activeUsers = [
-  { memberNick: "Martin", memberImage: "/img/martin.webp" },
-  { memberNick: "Justin", memberImage: "/img/justin.webp" },
-  { memberNick: "Rose", memberImage: "/img/rose.webp" },
-  { memberNick: "Nusret", memberImage: "/img/nusret.webp" },
-];
+import { useSelector } from "react-redux";
+import { createSelector } from "reselect";
+import { retrieveTopUsers } from "./selector";
+import { serverApi } from "../../../lib/config";
+
+/** REDUX SLICE & SELECTOR **/
+const topUsersRetriever = createSelector(retrieveTopUsers, (topUsers) => ({
+  topUsers,
+}));
 
 export default function ActiveUsers() {
+  const { topUsers } = useSelector(topUsersRetriever);
   return (
     <div className="active-users-frame">
       <Container>
@@ -19,19 +23,20 @@ export default function ActiveUsers() {
           <Box className="category-title">Active Users</Box>
           <Stack className="cards-frame">
             <CssVarsProvider>
-              {activeUsers.length !== 0 ? (
-                activeUsers.map((user, index) => {
+              {topUsers.length !== 0 ? (
+                topUsers.map((member) => {
+                  const imagePath = `${serverApi}/${member.memberImage}`;
                   return (
-                    <Card key={index} variant="outlined" className="card">
+                    <Card key={member._id} variant="outlined" className="card">
                       <CardOverflow>
                         <img
-                          src={user.memberImage}
+                          src={imagePath}
                           style={{
                             width: "100%",
                             height: "100%",
                             objectFit: "cover",
                           }}
-                          alt={user.memberNick}
+                          alt={member.memberNick}
                         />
                       </CardOverflow>
 
@@ -39,7 +44,7 @@ export default function ActiveUsers() {
                         <Stack className="info">
                           <Stack direction="row">
                             <Typography className="title">
-                              {user.memberNick}
+                              {member.memberNick}
                             </Typography>
                           </Stack>
                         </Stack>
