@@ -9,6 +9,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import "./css/index.css";
 import theme from "./MaterialTheme";
 import { BrowserRouter as Router } from "react-router-dom";
+import ContextProvider from "./app/context/ContextProvider";
 
 const container = document.getElementById("root");
 if (!container) {
@@ -19,12 +20,14 @@ const root = createRoot(container);
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <ThemeProvider theme={theme}>
-        <CssBaseLine />
-        <Router>
-          <App />
-        </Router>
-      </ThemeProvider>
+      <ContextProvider>
+        <ThemeProvider theme={theme}>
+          <CssBaseLine />
+          <Router>
+            <App />
+          </Router>
+        </ThemeProvider>
+      </ContextProvider>
     </Provider>
   </React.StrictMode>,
 );
