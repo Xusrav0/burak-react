@@ -37,7 +37,9 @@ const useBasket = () => {
       localStorage.setItem("cartData", JSON.stringify(cartUpdate));
     } else {
       const cartUpdate = cartItems.map((item: CartItem) =>
-        item._id === input._id ? { ...exist, quantity: exist - 1 } : item,
+        item._id === input._id
+          ? { ...exist, quantity: exist.quantity - 1 }
+          : item,
       );
       setCartItems(cartUpdate);
       localStorage.setItem("cartData", JSON.stringify(cartUpdate));
