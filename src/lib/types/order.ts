@@ -2,8 +2,6 @@ import { OrderStatus } from "../enums/order.enum";
 import { Product } from "./product";
 
 export interface OrderItemInput {
-  orderItemQuantity: any;
-  orderItemPrice: any;
   itemQuantity: number;
   itemPrice: number;
   productId: string;
@@ -32,7 +30,7 @@ export interface Order {
   productData: Product[];
 }
 
-export interface OrderInquery {
+export interface OrderInquiry {
   page: number;
   limit: number;
   orderStatus: OrderStatus;
